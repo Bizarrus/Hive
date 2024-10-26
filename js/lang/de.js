@@ -12,9 +12,14 @@ window.strings_de = {
     'View on Web Store':        'Ansicht im Web Store',
 
     /* Result */
-    'Result':                   'Resultat',
-    'Type':                     'Typ',
-    'Score':                    'Score',
+    'The input is likely to be:':   'Die Eingabe ist wahrscheinlich:',
+    'Close':                        'Schließen',
+    'Result':                       'Resultat',
+    'Type':                         'Typ',
+    'Score':                        'Score',
+    'Not AI Generated':             'Nicht KI Generiert',
+    'AI Generated':                 'KI Generiert',
+    'Edited':                       'Bearbeitet',
 
     /* Error Messages */
     'Bad request – the request could not be accepted.':                                                 'Falsche Anfrage - die Anfrage konnte nicht akzeptiert werden.',

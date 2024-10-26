@@ -166,6 +166,10 @@ class Main {
 			defaultHeaders:		false
 		});
 
+		this.Upload.on("processing", () => {
+			document.body.dataset.loading = 'true';
+		});
+
 		this.Upload.on("success", (file, response, e) => {
 			let image = new Image();
 			image.src = file.dataURL;
@@ -217,7 +221,8 @@ class Main {
 		return string;
 	}
 
-	onClick() {
+	onClick(event) {
+		event.preventDefault();
 		document.querySelector('.dz-hidden-input').click();
 	}
 
@@ -277,26 +282,65 @@ class Main {
 
 				// Fill data
 				if(typeof(data.data) !== 'undefined') {
+					let highest = {
+						name: null,
+						score: 0
+					};
+
 					if(typeof(data.data.classes) !== 'undefined') {
 						data.data.classes.sort((a, b) => {
 							return b.score - a.score;
 						}).forEach((entry) => {
+							if(entry.score > highest.score) {
+								highest.name = entry.class;
+
+								if([
+									'not_ai_generated',
+									'none'
+								].indexOf(entry.class) === -1) {
+									highest.score = entry.score;
+								}
+							}
+
 							let row	= document.createElement('tr');
 
 							row.dataset.bsToggle	= 'tooltip';
-							row.dataset.bsHtml		= 'true';
 							row.dataset.bsTitle		= '<strong data-i18n="Type">' + this.getI18N('Type') + '</strong>: ' + entry.class + '<br /><strong data-i18n="Score">' + this.getI18N('Score') + '</strong>: ' + entry.score;
 
-							const score		= entry.score * 100;
-							const red		= Math.round(255 * (score / 100));
-							const green 	= Math.round(255 * (1 - score / 100));
-							const opacity 	= 0.2 + (0.8 * (score / 100));
+							const score 	= Math.max(0, Math.min(100, entry.score * 100));
 
-							row.innerHTML = '<td><span class="state badge" style="background: rgba(' + red + ', ' + green + ', 0, ' + opacity + ');"></span></td><td>' + this.convertClass(entry.class) + '</td><td><span class="badge text-bg-light">' + score.toFixed(2) + ' %</span></td>';
+							row.innerHTML = '<td><span class="state badge" style="background: rgb(' + Math.round(255 * (score / 100)) + ', ' + Math.round(255 * (1 - score / 100)) + ', 0);"></span></td><td>' + this.convertClass(entry.class) + '</td><td><span class="badge text-bg-light">' + score.toFixed(2) + ' %</span></td>';
 							container.append(row);
 
-							new bootstrap.Tooltip(row);
+							new bootstrap.Tooltip(row, {
+								html:		true,
+								container: 	'body'
+							});
 						});
+
+						console.log(highest.score);
+						let label 		= '';
+						const score 	= Math.max(0, Math.min(100, highest.score * 100));
+						const color 		= 'rgb(' + Math.round(255 * (score / 100)) + ', ' + Math.round(255 * (1 - score / 100)) + ', 0)';
+
+						if(highest.score * 100 < 1.5) {
+							label = this.getI18N('Not AI Generated');
+						} else if(highest.score * 100 < 10) {
+							label = this.getI18N('Edited');
+						} else {
+							label = this.getI18N('AI Generated');
+						}
+
+						setTimeout(() => {
+							document.querySelector('#wheel #outer').setAttribute('stroke-dashoffset', (1 - highest.score) * 630);
+						}, 10);
+
+						document.querySelector('ui-preview ui-result h1').innerHTML = ((highest.score * 100).toFixed(1)) + ' %';
+						document.querySelector('ui-preview ui-result h1').style.color = color;
+						document.querySelector('ui-preview ui-result h2').innerHTML = label;
+						document.querySelector('ui-preview ui-result h2').style.color = color;
+						document.querySelector('#wheel #outer').style.stroke = color;
+						document.querySelector('ui-preview ui-result h3').innerHTML = highest.name;
 					}
 				}
 
@@ -328,6 +372,7 @@ class Main {
 			break;
 		}
 
+		document.body.dataset.loading = 'false';
 	}
 }
 

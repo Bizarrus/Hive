@@ -12,11 +12,12 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 		<link href="css/layout.css" rel="stylesheet" />
 	</head>
-	<body class="d-flex flex-column align-items-center py-4 bg-body-tertiary">
+	<body class="d-flex flex-column align-items-center py-4 bg-body-tertiary" data-loading="false">
 		<main class="w-100 m-auto text-center">
 			<div class="container">
 				<div class="row justify-content-center">
-					<div class="col-4">
+					<div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4">
+						<!-- Drag & Drop Area -->
 						<ui-drag>
 							<ui-logo></ui-logo>
 							<h1 data-i18n="Drag an image here">Drag an image here</h1>
@@ -25,6 +26,8 @@
 								<label class="btn btn-outline-primary" data-i18n="Select file">Select file</label>
 							</div>
 						</ui-drag>
+
+						<!-- Analyze by URL -->
 						<ui-input>
 							<div class="input-group">
 								<input type="text" class="form-control" placeholder="Enter image URL" data-i18p="Enter image URL" />
@@ -34,9 +37,10 @@
 
 						<hr />
 
+						<!-- Download original Browser-Plugin -->
 						<a href="https://chrome.google.com/webstore/detail/hive-ai-detector/cmeikcgfecnhojcbfapbmpbjgllklcbi" target="_blank" class="btn btn-chrome btn-primary">
 							<label data-i18n="View on Web Store">View on Web Store</label>
-							<img src="images/chrome.png" />
+							<img alt="Google ExtensionStore" src="images/chrome.png" />
 						</a>
 					</div>
 				</div>
@@ -45,7 +49,7 @@
 
 		<!-- Result -->
 		<div class="modal fade" id="results" tabindex="-1" aria-hidden="true">
-			<div class="modal-dialog">
+			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header text-bg-primary">
 						<h1 class="modal-title fs-5" data-i18n="Result">Result</h1>
@@ -54,19 +58,25 @@
 					<div class="modal-body container">
 						<div class="row">
 							<div class="col">
-								<ui-preview></ui-preview>
-
-								<svg xmlns="http://www.w3.org/2000/svg" width="98" height="28" viewBox="0 0 250 250" id="wheel">
-									<circle cx="125" cy="125" r="100" stroke-width="20px" id="inner" />
-									<circle cx="125" cy="125" r="100" stroke-width="20px" stroke-dasharray="629" stroke-dashoffset="225.1745180425032" id="outer" />
-								</svg>
+								<ui-preview>
+									<svg xmlns="http://www.w3.org/2000/svg" width="98" height="28" viewBox="0 0 250 250" id="wheel">
+										<circle cx="125" cy="125" r="100" stroke-width="20px" id="inner" />
+										<circle cx="125" cy="125" r="100" stroke-width="20px" stroke-dasharray="630" stroke-dashoffset="630" id="outer" />
+									</svg>
+									<ui-result>
+										<h1>0.0%</h1>
+										<label data-i18n="The input is likely to be:">The input is likely to be:</label>
+										<h2></h2>
+										<h3 class="badge text-bg-secondary"></h3>
+									</ui-result>
+								</ui-preview>
 							</div>
-							<div class="col">
-								<table class="table table-hover">
+							<div class="col overflow-y-auto vh-100 fix">
+								<table class="table table-hover table-sm">
 									<thead>
 										<tr>
-											<td data-i18n="Type" colspan="2">Type</td>
-											<td data-i18n="Score">Score</td>
+											<th data-i18n="Type" colspan="2">Type</th>
+											<th data-i18n="Score">Score</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -77,7 +87,7 @@
 						</div>
 					</div>
 					<div class="modal-footer text-center text-bg-primary">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="Close">Close</button>
 					</div>
 				</div>
 			</div>
