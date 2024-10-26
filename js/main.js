@@ -149,7 +149,8 @@ class Main {
 	Data = null;
 	Upload = null;
 	Proxies = [
-		'https://test.cors.workers.dev/?'
+		//'https://test.cors.workers.dev/?'
+		'https://hive.fruithost.de/?'
 	];
 
 	constructor() {
@@ -175,6 +176,12 @@ class Main {
 			image.src = file.dataURL;
 			this.fillResults(image, response);
 		});
+
+		let test = "https://149434221.v2.pressablecdn.com/wp-content/uploads/2015/08/dot-online.png";
+		//console.log(this.Upload.processFile());
+		// obj > console.log(this.Upload.addFile(test));
+		// obj > console.log(this.Upload.uploadFile(test));
+		console.log(this.Upload.submitRequest((xhr, null, files));
 
 		document.querySelector('ui-drag').addEventListener('click',this.onClick);
 
