@@ -1,0 +1,9 @@
+<!--
+	Copyright © 2024 by Hive.
+	All rights reserved.
+	thehive.ai
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="98" height="28" viewBox="0 0 250 250" id="wheel">
+    <circle cx="125" cy="125" r="100" stroke-width="20px" id="inner" />
+    <circle cx="125" cy="125" r="100" stroke-width="20px" stroke-dasharray="629" stroke-dashoffset="225.1745180425032" id="outer" />
+</svg>

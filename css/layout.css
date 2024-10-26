@@ -1,0 +1,147 @@
+:root {
+	--font-text: 'YS Text', Arial, Helvetica, 'Arial Unicode MS', sans-serif;
+	--color-stroke: rgba(7, 28, 71, 0.12);
+	--color-text-primary: #000;
+	--color-text-quaternary: rgba(84, 96, 122, .68);
+	--bs-primary: #206CFD;
+	
+	--logo-width: 150px;
+	--logo-height: 43px;
+}
+
+html, body {
+	height: 100%;
+	font-family: var(--font-text);
+	font-size: 14px;
+	line-height: 1.154;
+}
+
+ui-drag {
+	display: block;
+	position: relative;
+	padding: 50px;
+	border-radius: 20px;
+	border: 3px dashed var(--color-stroke);
+}
+
+ui-drag:hover {
+	border-color: var(--bs-primary);
+}
+
+ui-drag ui-logo {
+	display: block;
+	position: relative;
+	background: url('../images/logo.svg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: var(--logo-width);
+	height: var(--logo-height);
+	margin: 0 auto 20px auto;
+}
+
+ui-drag h1 {
+	color: var(--color-text-primary);
+	font-size: 28px;
+	font-weight: 500;
+	line-height: 32px;
+	margin-bottom: 8px;
+}
+
+ui-drag h2 {
+	color: var(--color-text-quaternary);
+	font-size: 16px;
+	line-height: 20px;
+	margin-bottom: 16px;
+}
+
+ui-input {
+	display: block;
+	position: relative;
+	margin-top: 20px;
+}
+
+.btn-chrome {
+	position: relative;
+	line-height: 1.0;
+	padding: 5px 45px 5px 20px;
+	text-align: center;
+	border-radius: 2.25rem;
+}
+
+.btn-chrome img {
+	position: absolute;
+	right: 12px;
+	top: 7px;
+	width: 25px;
+	height: 18px;
+}
+
+hr {
+	margin: 60px 0 20px 0;
+}
+
+/* Messages */
+.toast{
+	position: fixed;
+	padding: 10px;
+}
+
+/* Tooltips */
+.tooltip {
+	--bs-tooltip-bg: var(--bs-primary);
+	--bs-tooltip-color: var(--bs-white);
+}
+
+/* Result */
+ui-preview {
+	display: block;
+	position: relative;
+	background: url('../images/logo.svg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	aspect-ratio: 1 / 1;
+}
+
+ui-preview svg {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 100%);
+}
+
+.state {
+	display: inline-block !important;
+	width: 16px;
+	height: 16px;
+}
+
+.ai-class {
+	font-size: 12px;
+}
+
+.ai-class i.bi {
+	font-size: 8px;
+	color: var(--color-text-quaternary);
+	margin: -9px 0 0 -4px;
+}
+
+#wheel {
+	width: 250px;
+	height: 250px;
+	fill: transparent;
+}
+
+#inner {
+	fill: transparent;
+	stroke: rgb(236, 242, 255);
+}
+
+#outer {
+	fill: transparent;
+	transition-property: stroke-dasharray, stroke, stroke-dashoffset;
+	transition-duration: 0.6s;
+	transition-timing-function: ease;
+	transform: rotate(-90deg);
+	transform-origin: center center;
+	stroke: rgb(32, 108, 253);
+}
