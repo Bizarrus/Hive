@@ -181,7 +181,7 @@ class Main {
 		//console.log(this.Upload.processFile());
 		// obj > console.log(this.Upload.addFile(test));
 		// obj > console.log(this.Upload.uploadFile(test));
-		console.log(this.Upload.submitRequest((xhr, null, files));
+//		console.log(this.Upload.submitRequest((xhr, null, files));
 
 		document.querySelector('ui-drag').addEventListener('click',this.onClick);
 
@@ -245,12 +245,12 @@ class Main {
 		return this.Proxies[Math.floor((Math.random() * this.Proxies.length))] + url;
 	}
 
-	pushInfo(type, message) {
+	pushInfo(type, message, additional) {
 		this.Toast.hide();
 
 		setTimeout(() => {
 			let element = document.querySelector('div.toast');
-			element.innerHTML = this.getI18N(message);
+			element.innerHTML = this.getI18N(message) + '<br />><strong>' + this.getI18N('Additional Information') + ':</strong>' + this.getI18N(additional);
 
 			element.classList.forEach((value) => {
 				if(value.startsWith('text-bg-')) {
@@ -282,6 +282,7 @@ class Main {
 		let container = document.querySelector('tbody');
 		this.Data.querySelector('ui-preview').style.backgroundImage = 'url(' + file.src + ')';
 
+		console.log(data.status_code);
 		switch(data.status_code) {
 			case 200:
 				// Empty old Data
@@ -354,28 +355,28 @@ class Main {
 				this.Results.show();
 			break;
 			case 400:
-				this.pushInfo('danger', 'Bad request – the request could not be accepted.');
+				this.pushInfo('danger', 'Bad request – the request could not be accepted.', data.message);
 			break;
 			case 403:
-				this.pushInfo('danger', ' Unauthorized – there is an issue with the API key.');
+				this.pushInfo('danger', ' Unauthorized – there is an issue with the API key.', data.message);
 			break;
 			case 404:
-				this.pushInfo('danger', 'Not found – the page could not be found.');
+				this.pushInfo('danger', 'Not found – the page could not be found.', data.message);
 			break;
 			case 405:
-				this.pushInfo('warning', 'You have insufficient balance in your Hive account.');
+				this.pushInfo('warning', 'You have insufficient balance in your Hive account.', data.message);
 			break;
 			case 429:
-				this.pushInfo('warning', 'Too many requests – you’ve made too many requests, please try again in a few minutes.');
+				this.pushInfo('warning', 'Too many requests – you’ve made too many requests, please try again in a few minutes.', data.message);
 			break;
 			case 500:
-				this.pushInfo('warning', 'Internal service error – we had a problem with our server. Please try again later.');
+				this.pushInfo('warning', 'Internal service error – we had a problem with our server. Please try again later.', data.message);
 			break;
 			case 503:
-				this.pushInfo('warning', 'Service unavailable – we are temporarily offline for maintenance. Please try again later.');
+				this.pushInfo('warning', 'Service unavailable – we are temporarily offline for maintenance. Please try again later.', data.message);
 			break;
 			case 504:
-				this.pushInfo('warning', 'Gateway timeout – we are not able to fulfil your request at this time. Please try again later.');
+				this.pushInfo('warning', 'Gateway timeout – we are not able to fulfil your request at this time. Please try again later.', data.message);
 			break;
 		}
 
