@@ -149,7 +149,6 @@ class Main {
 	Data = null;
 	Upload = null;
 	Proxies = [
-		//'https://test.cors.workers.dev/?'
 		'https://hive.fruithost.de/?'
 	];
 
