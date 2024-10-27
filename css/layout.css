@@ -4,9 +4,14 @@
 	--color-text-primary: #000;
 	--color-text-quaternary: rgba(84, 96, 122, .68);
 	--bs-primary: #206CFD;
-	
 	--logo-width: 150px;
 	--logo-height: 43px;
+}
+
+[data-bs-theme="dark"] {
+	--color-stroke: rgba(250, 235, 235, 0.32);
+	--color-text-primary: #5c5c5c;
+	--color-text-quaternary: rgb(174, 183, 198);
 }
 
 html, body {
@@ -16,6 +21,15 @@ html, body {
 	line-height: 1.154;
 }
 
+/* Forms */
+textarea:focus,
+textarea:focus,
+input:focus {
+	outline: none;
+	box-shadow: none !important;
+}
+
+/* Loading */
 body[data-loading="true"]:before {
 	content: "";
 	display: block;
@@ -25,7 +39,7 @@ body[data-loading="true"]:before {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: rgba(0, 0, 0, 0.8);
+	background: var(--bs-secondary-color);
 }
 
 body[data-loading="true"]:after {
@@ -51,6 +65,32 @@ body[data-loading="true"]:after {
 	margin: -5rem;
 }
 
+/* Theme Switch */
+.theme-switch {
+	z-index: 99999;
+	border-radius: 35%;
+	color: var(--bs-emphasis-color);
+	background-color: var(--bs-secondary-bg-subtle);
+}
+
+.theme-switch .bi {
+	vertical-align: -.125em;
+	fill: currentColor;
+}
+
+.theme-switch .btn-bd-primary:active,
+.theme-switch .btn-bd-primary:focus {
+	--bs-btn-active-border-color: transparent;
+}
+
+.theme-switch .bd-mode-toggle {
+	z-index: 1500;
+}
+
+.theme-switch .bd-mode-toggle .dropdown-menu .active .bi {
+	display: block !important;
+}
+
 /* Drag & Drop Area */
 ui-drag {
 	display: block;
@@ -67,13 +107,18 @@ ui-drag:hover {
 ui-drag ui-logo {
 	display: block;
 	position: relative;
-	background: url('../images/logo.svg');
+	background-image: url('../images/logo.svg');
 	background-repeat: no-repeat;
 	background-size: cover;
 	width: var(--logo-width);
 	height: var(--logo-height);
 	margin: 0 auto 20px auto;
 }
+
+[data-bs-theme="dark"] ui-drag ui-logo {
+	background-image: url('../images/logo_light.svg');
+}
+
 
 ui-drag h1 {
 	color: var(--color-text-primary);

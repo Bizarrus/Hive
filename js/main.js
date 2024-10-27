@@ -186,7 +186,6 @@ class Main {
 
 		this.Language = this.loadLanguage();
 		this.reloadI18N();
-		this.Results.show();
 	}
 
 	loadLanguage() {
