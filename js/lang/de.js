@@ -11,6 +11,10 @@ window.strings_de = {
     /* Footer */
     'View on Web Store':        'Im Web Store ansehen',
 
+    /* Other */
+    'Copied successfully to the clipboard.':    'Erfolgreich in die Zwischenablage kopiert.',
+    'Error when copying to the clipboard.':     'Fehler beim kopieren in die Zwischenablage.',
+
     /* Result */
     'The input is likely to be:':   'Die Eingabe ist wahrscheinlich:',
     'Close':                        'Schließen',

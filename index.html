@@ -134,7 +134,23 @@
 						</div>
 					</div>
 					<div class="modal-footer justify-content-center text-bg-secondary">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="Close">Close</button>
+						<div class="container">
+							<div class="row">
+								<div class="col">
+									<div class="input-group input-group-sm">
+										<span class="input-group-text" data-i18n="Permalink">Permalink</span>
+										<input type="text" id="permalink" class="form-control form-control-sm" readonly />
+										<button id="copy" class="input-group-text">
+											<i class="bi bi-copy"></i>
+										</button>
+									</div>
+								</div>
+								<div class="col text-center">
+									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-i18n="Close">Close</button>
+								</div>
+								<div class="col"></div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

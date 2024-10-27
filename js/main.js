@@ -5,6 +5,7 @@
 
 class Main {
 	HiveServer = 'https://plugin.hivemoderation.com/api/v1/image/ai_detection';
+	Magic = '#analyze/';
 	Classes = {
 		not_ai_generated: {
 			name: 'Not AI generated'
@@ -179,16 +180,40 @@ class Main {
 		document.querySelector('ui-input button').addEventListener('click', this.onSearch.bind(this));
 		document.querySelector('ui-drag').addEventListener('click', this.onClick);
 
+		document.querySelector('button#copy').addEventListener('click', this.onCopy.bind(this));
+
 		if(window.location.hash) {
-			let magic 	= '#analyze/';
 			let hash 	= window.location.hash;
 
-			if(hash.substring(0, magic.length) === magic) {
-				let url 		= hash.replace(magic, '');
+			if(hash.substring(0, this.Magic.length) === this.Magic) {
+				let url 		= hash.replace(this.Magic, '');
 				let input	= document.querySelector('ui-input input[type="text"]');
 				input.value			= url;
 				this.searchByURL(input);
 				window.location.hash = '';
+			}
+		}
+	}
+
+	onCopy(event) {
+		let target = event.target.parentNode.parentNode.querySelector('input[type="text"]');
+		target.select();
+		target.setSelectionRange(0, 99999);
+
+		try {
+			navigator.clipboard.writeText(target.value);
+			this.pushInfo('success', 'Copied successfully to the clipboard.', target.value);
+		} catch(e) {
+			try {
+				var range = document.createRange();
+				range.selectNode(target);
+				window.getSelection().removeAllRanges();
+				window.getSelection().addRange(range);
+				document.execCommand("copy");
+				window.getSelection().removeAllRanges();
+				this.pushInfo('success', 'Copied successfully to the clipboard.', target.value);
+			} catch(e1) {
+				this.pushInfo('danger', 'Error when copying to the clipboard.', target.value);
 			}
 		}
 	}
@@ -212,6 +237,13 @@ class Main {
 		let url					= element.value;
 		element.value					= '';
 		document.body.dataset.loading	= 'true';
+
+		/* Explicitly change to Original File for Community Knuddels.de */
+		if(new RegExp('([a-zA-Z\\d.-]+\\.knuddels\\.[A-Za-z]{2,4})').test(url)) {
+			url = url.replace(/pro0(s|m|l|vl)0p/gm, 'pro0vl0p');
+		}
+
+		this.setPermalink(url);
 
 		/* Get the Image */
 		new Ajax(this.getRandomProxy(url)).additional(function () {
@@ -256,7 +288,13 @@ class Main {
 
 		setTimeout(() => {
 			let element = document.querySelector('div.toast');
-			element.innerHTML = window.Language.getI18N(message) + '<br /><br /><strong>' + window.Language.getI18N('Additional Information') + ':</strong><br />' + window.Language.getI18N(additional);
+			let text = window.Language.getI18N(message);
+
+			if(typeof(additional) !== 'undefined') {
+				text += '<br /><br /><strong>' + window.Language.getI18N('Additional Information') + ':</strong><br />' + window.Language.getI18N(additional);
+			}
+
+			element.innerHTML = text;
 
 			element.classList.forEach((value) => {
 				if(value.startsWith('text-bg-')) {
@@ -268,6 +306,10 @@ class Main {
 
 			this.Toast.show();
 		}, 500);
+	}
+
+	setPermalink(image) {
+		document.querySelector('input#permalink').value = 'https://bizarrus.github.io/Hive/\\' + this.Magic + image;
 	}
 
 	convertClass(name) {
@@ -288,7 +330,6 @@ class Main {
 		let container = document.querySelector('tbody');
 		this.Data.querySelector('ui-preview').style.backgroundImage = 'url(' + file.src + ')';
 
-		console.log(data.status_code);
 		switch(data.status_code) {
 			case 200:
 				// Empty old Data
