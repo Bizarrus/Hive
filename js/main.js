@@ -149,7 +149,7 @@ class Main {
 	Data = null;
 	Upload = null;
 	Proxies = [
-		'https://hive.fruithost.de/?'
+		'https://proxy.fruithost.de/?'
 	];
 
 	constructor() {
@@ -186,6 +186,7 @@ class Main {
 
 		this.Language = this.loadLanguage();
 		this.reloadI18N();
+		this.Results.show();
 	}
 
 	loadLanguage() {
@@ -325,7 +326,6 @@ class Main {
 							});
 						});
 
-						console.log(highest.score);
 						let label 		= '';
 						const score 	= Math.max(0, Math.min(100, highest.score * 100));
 						const color 		= 'rgb(' + Math.round(255 * (score / 100)) + ', ' + Math.round(255 * (1 - score / 100)) + ', 0)';
