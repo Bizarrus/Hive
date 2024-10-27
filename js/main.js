@@ -278,7 +278,7 @@ class Main {
 		let data = this.Classes[name];
 
 		if(typeof(data.url) !== 'undefined') {
-			return '<a class="ai-class icon-link link-underline-opacity-25 text-truncate" href="' + data.url + '" target="_blank" data-i18n="' + data.name + '">' + window.Language.getI18N(data.name) + '<i class="bi bi-box-arrow-up-right"></i></a>';
+			return '<a class="ai-class icon-link link-underline-opacity-25 text-truncate" href="' + data.url + '" target="_blank" data-i18n="' + data.name + '"><span data-i18n="' + data.name + '">' + window.Language.getI18N(data.name) + '</span><i class="bi bi-box-arrow-up-right"></i></a>';
 		}
 
 		return '<span class="ai-class" data-i18n="' + data.name + '">' + window.Language.getI18N(data.name) + '</span>';

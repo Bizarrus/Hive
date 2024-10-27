@@ -17,9 +17,15 @@ window.strings_de = {
     'Result':                       'Resultat',
     'Type':                         'Typ',
     'Score':                        'Score',
+    'Not AI generated':             'Nicht KI Generiert',
+    'AI generated':                 'KI Generiert',
     'Not AI Generated':             'Nicht KI Generiert',
     'AI Generated':                 'KI Generiert',
     'Edited':                       'Bearbeitet',
+    'Other Image Generators':       'Andere Bild-Generatoren',
+    'None':                         'Nichts',
+    'Inconclusive':                 'Nicht schlüssig',
+    'Inconclusive Video':           'Nicht schlüssiges Video',
 
     /* Error Messages */
     'Additional Information':                                                                           'Additional Information',
