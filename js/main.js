@@ -4,8 +4,6 @@
 */
 
 class Main {
-	Language = 'en';
-	LanguageCache = {};
 	HiveServer = 'https://plugin.hivemoderation.com/api/v1/image/ai_detection';
 	Classes = {
 		not_ai_generated: {
@@ -181,9 +179,6 @@ class Main {
 		document.querySelector('ui-input button').addEventListener('click', this.onSearch.bind(this));
 		document.querySelector('ui-drag').addEventListener('click', this.onClick);
 
-		this.Language = this.loadLanguage();
-		this.reloadI18N();
-
 		if(window.location.hash) {
 			let magic 	= '#analyze/';
 			let hash 	= window.location.hash;
@@ -196,45 +191,6 @@ class Main {
 				window.location.hash = '';
 			}
 		}
-	}
-
-	loadLanguage() {
-		let language = navigator.language;
-
-		if(language.indexOf('-') > -1) {
-			language = language.split('-')[0];
-		}
-
-		// Load Language file
-		let file = document.createElement('script');
-		file.onload = () => {
-			this.LanguageCache = window['strings_' + language];
-			this.reloadI18N();
-		};
-		file.src = 'js/lang/' + language + '.js';
-
-		document.querySelector('html').lang = language;
-		(document.getElementsByTagName('head')[0] || document.documentElement).appendChild(file);
-
-		return language;
-	}
-
-	reloadI18N() {
-		document.querySelectorAll('[data-i18p]').forEach((element) => {
-			element.placeholder = this.getI18N(element.dataset.i18p);
-		});
-
-		document.querySelectorAll('[data-i18n]').forEach((element) => {
-			element.innerHTML = this.getI18N(element.dataset.i18n);
-		});
-	}
-
-	getI18N(string) {
-		if(typeof(this.LanguageCache[string]) !== 'undefined') {
-			string = this.LanguageCache[string];
-		}
-
-		return string;
 	}
 
 	onClick(event) {
@@ -300,7 +256,7 @@ class Main {
 
 		setTimeout(() => {
 			let element = document.querySelector('div.toast');
-			element.innerHTML = this.getI18N(message) + '<br /><br /><strong>' + this.getI18N('Additional Information') + ':</strong><br />' + this.getI18N(additional);
+			element.innerHTML = window.Language.getI18N(message) + '<br /><br /><strong>' + window.Language.getI18N('Additional Information') + ':</strong><br />' + window.Language.getI18N(additional);
 
 			element.classList.forEach((value) => {
 				if(value.startsWith('text-bg-')) {
@@ -322,10 +278,10 @@ class Main {
 		let data = this.Classes[name];
 
 		if(typeof(data.url) !== 'undefined') {
-			return '<a class="ai-class icon-link link-underline-opacity-25 text-truncate" href="' + data.url + '" target="_blank" data-i18n="' + data.name + '">' + this.getI18N(data.name) + '<i class="bi bi-box-arrow-up-right"></i></a>';
+			return '<a class="ai-class icon-link link-underline-opacity-25 text-truncate" href="' + data.url + '" target="_blank" data-i18n="' + data.name + '">' + window.Language.getI18N(data.name) + '<i class="bi bi-box-arrow-up-right"></i></a>';
 		}
 
-		return '<span class="ai-class" data-i18n="' + data.name + '">' + this.getI18N(data.name) + '</span>';
+		return '<span class="ai-class" data-i18n="' + data.name + '">' + window.Language.getI18N(data.name) + '</span>';
 	}
 
 	fillResults(file, data) {
@@ -363,7 +319,7 @@ class Main {
 							let row	= document.createElement('tr');
 
 							row.dataset.bsToggle	= 'tooltip';
-							row.dataset.bsTitle		= '<strong data-i18n="Type">' + this.getI18N('Type') + '</strong>: ' + entry.class + '<br /><strong data-i18n="Score">' + this.getI18N('Score') + '</strong>: ' + entry.score;
+							row.dataset.bsTitle		= '<strong data-i18n="Type">' + window.Language.getI18N('Type') + '</strong>: ' + entry.class + '<br /><strong data-i18n="Score">' + window.Language.getI18N('Score') + '</strong>: ' + entry.score;
 
 							const score 	= Math.max(0, Math.min(100, entry.score * 100));
 
@@ -381,11 +337,11 @@ class Main {
 						const color 		= 'rgb(' + Math.round(255 * (score / 100)) + ', ' + Math.round(255 * (1 - score / 100)) + ', 0)';
 
 						if(highest.score * 100 < 1.5) {
-							label = this.getI18N('Not AI Generated');
+							label = window.Language.getI18N('Not AI Generated');
 						} else if(highest.score * 100 < 10) {
-							label = this.getI18N('Edited');
+							label = window.Language.getI18N('Edited');
 						} else {
-							label = this.getI18N('AI Generated');
+							label = window.Language.getI18N('AI Generated');
 						}
 
 						setTimeout(() => {

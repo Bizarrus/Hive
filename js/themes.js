@@ -8,7 +8,8 @@
 'use strict';
 
 class Theme {
-    constructor() {
+    constructor(options) {
+        this.options = options;
         this.icons = {
             light:  'sun-fill',
             dark:   'moon-stars-fill',
@@ -43,9 +44,10 @@ class Theme {
         [
             'theme-switch',
             'dropdown',
-            'position-fixed',
-            'bottom-0',
-            'end-0',
+           // 'position-fixed',
+            //'bottom-0',
+            // 'end-0',
+            'd-inline-block',
             'mb-3',
             'me-3',
             'bd-mode-toggle'
@@ -125,7 +127,11 @@ class Theme {
             list.appendChild(li);
         });
 
-        document.body.appendChild(container);
+        if(this.options.container) {
+            document.querySelector(this.options.container).appendChild(container);
+        } else {
+            document.body.appendChild(container);
+        }
     }
 
     getChange(element) {
@@ -200,5 +206,7 @@ class Theme {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    window.Theme = new Theme();
+    window.Theme = new Theme({
+        container: 'header #dynamic'
+    });
 });

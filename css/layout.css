@@ -68,7 +68,7 @@ body[data-loading="true"]:after {
 /* Theme Switch */
 .theme-switch {
 	z-index: 99999;
-	border-radius: 35%;
+	border-radius: 8px;
 	color: var(--bs-emphasis-color);
 	background-color: var(--bs-secondary-bg-subtle);
 }
@@ -88,6 +88,32 @@ body[data-loading="true"]:after {
 }
 
 .theme-switch .bd-mode-toggle .dropdown-menu .active .bi {
+	display: block !important;
+}
+
+/* Language Switch */
+.language-switch {
+	z-index: 99999;
+	border-radius: 8px;
+	color: var(--bs-emphasis-color);
+	background-color: var(--bs-secondary-bg-subtle);
+}
+
+.language-switch .bi {
+	vertical-align: -.125em;
+	fill: currentColor;
+}
+
+.language-switch .btn-bd-primary:active,
+.language-switch .btn-bd-primary:focus {
+	--bs-btn-active-border-color: transparent;
+}
+
+.language-switch .bd-mode-toggle {
+	z-index: 1500;
+}
+
+.language-switch .bd-mode-toggle .dropdown-menu .active .bi {
 	display: block !important;
 }
 
