@@ -167,12 +167,15 @@ class Main {
 		});
 
 		this.Upload.on("processing", () => {
+			this.setPermalink(null);
 			document.body.dataset.loading = 'true';
 		});
 
 		this.Upload.on("success", (file, response, e) => {
+			this.setPermalink(null);
 			let image = new Image();
 			image.src = file.dataURL;
+
 			this.fillResults(image, response);
 		});
 
@@ -234,6 +237,8 @@ class Main {
 	}
 
 	searchByURL(element) {
+		this.setPermalink(null);
+
 		let url					= element.value;
 		element.value					= '';
 		document.body.dataset.loading	= 'true';
@@ -309,7 +314,14 @@ class Main {
 	}
 
 	setPermalink(image) {
-		document.querySelector('input#permalink').value = 'https://bizarrus.github.io/Hive/\\' + this.Magic + image;
+		let element = document.querySelector('input#permalink');
+
+		if(image === null) {
+			element.value = '';
+			return;
+		}
+
+		element.value = 'https://bizarrus.github.io/Hive/\\' + this.Magic + image;
 	}
 
 	convertClass(name) {
