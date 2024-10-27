@@ -193,6 +193,7 @@ class Main {
 				let input	= document.querySelector('ui-input input[type="text"]');
 				input.value			= url;
 				this.searchByURL(input);
+				window.location.hash = '';
 			}
 		}
 	}
