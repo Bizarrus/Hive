@@ -300,7 +300,7 @@ class Main {
 
 		setTimeout(() => {
 			let element = document.querySelector('div.toast');
-			element.innerHTML = this.getI18N(message) + '<br />><strong>' + this.getI18N('Additional Information') + ':</strong>' + this.getI18N(additional);
+			element.innerHTML = this.getI18N(message) + '<br /><br /><strong>' + this.getI18N('Additional Information') + ':</strong><br />' + this.getI18N(additional);
 
 			element.classList.forEach((value) => {
 				if(value.startsWith('text-bg-')) {
