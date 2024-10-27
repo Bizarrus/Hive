@@ -1,4 +1,5 @@
-![image](images/preview.png)
+[![PREVIEW]](https://bizarrus.github.io/Hive/)
+
 > [!NOTE]
 > 
 > You can trigger the search by appending it to the URL as follows:
@@ -22,3 +23,5 @@
 > [https://thehive.ai/privacy](https://thehive.ai/privacy)
 > 
 > All rights reserved.
+
+[PREVIEW]: images/preview.png
