@@ -6,6 +6,7 @@
 class Main {
 	Language = 'en';
 	LanguageCache = {};
+	HiveServer = 'https://plugin.hivemoderation.com/api/v1/image/ai_detection';
 	Classes = {
 		not_ai_generated: {
 			name: 'Not AI generated'
@@ -157,7 +158,7 @@ class Main {
 		this.Toast		= new bootstrap.Toast(document.querySelector('div.toast'));
 		this.Results	= new bootstrap.Modal(this.Data);
 		this.Upload		= new Dropzone(document.querySelector('ui-drag'), {
-			url:		this.getRandomProxy('https://plugin.hivemoderation.com/api/v1/image/ai_detection'),
+			url:		this.getRandomProxy(this.HiveServer),
 			paramName:	'media',
 			params:		{
 				'request_id': this.generateUniqSerial()
@@ -176,13 +177,9 @@ class Main {
 			this.fillResults(image, response);
 		});
 
-		let test = "https://149434221.v2.pressablecdn.com/wp-content/uploads/2015/08/dot-online.png";
-		//console.log(this.Upload.processFile());
-		// obj > console.log(this.Upload.addFile(test));
-		// obj > console.log(this.Upload.uploadFile(test));
-//		console.log(this.Upload.submitRequest((xhr, null, files));
-
-		document.querySelector('ui-drag').addEventListener('click',this.onClick);
+		document.querySelector('ui-input input[type="text"]').addEventListener('keyup', this.onType.bind(this));
+		document.querySelector('ui-input button').addEventListener('click', this.onSearch.bind(this));
+		document.querySelector('ui-drag').addEventListener('click', this.onClick);
 
 		this.Language = this.loadLanguage();
 		this.reloadI18N();
@@ -230,6 +227,47 @@ class Main {
 	onClick(event) {
 		event.preventDefault();
 		document.querySelector('.dz-hidden-input').click();
+	}
+
+	onType(event) {
+		if(event.keyCode === 13) {
+			this.searchByURL(event.target);
+		}
+	}
+
+	onSearch(event) {
+		this.searchByURL(event.target.parentNode.querySelector('input[type="text"]'));
+	}
+
+	searchByURL(element) {
+		let url					= element.value;
+		element.value					= '';
+		document.body.dataset.loading	= 'true';
+
+		/* Get the Image */
+		new Ajax(this.getRandomProxy(url)).additional(function () {
+			this.responseType = 'arraybuffer';
+		}).get().then((response) => {
+			const data	= new FormData();
+			const file 		= new File([response.response], 'temp_' + Date.now() + '.jpg', {
+				type: 'image/jpeg'
+			});
+
+			data.append('media',		file);
+			data.append('request_id',	this.generateUniqSerial());
+
+			new Ajax(this.getRandomProxy(this.HiveServer)).post(data).then((response) => {
+				try {
+					let image	= new Image();
+					image.src					= this.getRandomProxy(url);
+					this.fillResults(image, JSON.parse(response.response));
+				} catch (e) {
+					this.pushInfo('danger', 'Malformed Output.', e.message);
+				}
+			}).catch((error, ref) => {
+				this.pushInfo('danger', 'Request Error.', error.message);
+			});
+		});
 	}
 
 	generateUniqSerial() {

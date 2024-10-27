@@ -23,6 +23,8 @@ window.strings_de = {
 
     /* Error Messages */
     'Additional Information':                                                                           'Additional Information',
+    'Malformed Output.':                                                                                'Fehlerhafte Ausgabe.',
+    'Request Error.':                                                                                   'Anfrage-Fehler.',
     'Bad request – the request could not be accepted.':                                                 'Falsche Anfrage - die Anfrage konnte nicht akzeptiert werden.',
     'Unauthorized – there is an issue with the API key.':                                               'Nicht autorisiert - es gibt ein Problem mit dem API-Schlüssel.',
     'Not found – the page could not be found.':                                                         'Nicht gefunden - die Seite konnte nicht gefunden werden.',
