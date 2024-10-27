@@ -183,6 +183,18 @@ class Main {
 
 		this.Language = this.loadLanguage();
 		this.reloadI18N();
+
+		if(window.location.hash) {
+			let magic 	= '#analyze/';
+			let hash 	= window.location.hash;
+
+			if(hash.substring(0, magic.length) === magic) {
+				let url 		= hash.replace(magic, '');
+				let input	= document.querySelector('ui-input input[type="text"]');
+				input.value			= url;
+				this.searchByURL(input);
+			}
+		}
 	}
 
 	loadLanguage() {
