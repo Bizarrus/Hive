@@ -219,11 +219,13 @@ ui-preview svg {
 	position: absolute;
 	left: 50%;
 	top: 50%;
+	opacity: 0.5;
 	transform: translate(-50%, -50%);
 }
 
 ui-preview ui-result {
 	position: absolute;
+	opacity: 0.5;
 	width: 250px;
 	height: 250px;
 	left: 50%;
@@ -236,6 +238,11 @@ ui-preview ui-result {
 	color: var(--bs-white);
 	justify-content: center;
 	place-items: center;
+}
+
+ui-preview:hover svg,
+ui-preview:hover ui-result {
+	opacity: 1;
 }
 
 ui-preview ui-result:after {
