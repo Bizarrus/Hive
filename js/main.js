@@ -6,6 +6,12 @@
 class Main {
 	HiveServer = 'https://plugin.hivemoderation.com/api/v1/image/ai_detection';
 	Magic = '#analyze/';
+	Engines = {
+		googleimages: 'https://www.google.com/searchbyimage?image_url={0}&client=app',
+		googlelens: 'https://lens.google.com/uploadbyurl?url={0}&hl=en&re=df&st=${+ new Date()}&ep=gisbubu',
+		yandex: 'https://yandex.com/images/search?url={0}&rpt=imageview',
+		tineye: 'https://www.tineye.com/search/?url={0}'
+	};
 	Classes = {
 		not_ai_generated: {
 			name: 'Not AI generated'
@@ -182,8 +188,8 @@ class Main {
 		document.querySelector('ui-input input[type="text"]').addEventListener('keyup', this.onType.bind(this));
 		document.querySelector('ui-input button').addEventListener('click', this.onSearch.bind(this));
 		document.querySelector('ui-drag').addEventListener('click', this.onClick);
-
 		document.querySelector('button#copy').addEventListener('click', this.onCopy.bind(this));
+		document.querySelector('[data-icon="all"]').addEventListener('click', this.onAllSearchEngines.bind(this));
 
 		if(window.location.hash) {
 			let hash 	= window.location.hash;
@@ -196,6 +202,16 @@ class Main {
 				window.location.hash = '';
 			}
 		}
+	}
+
+	format(content) {
+		if (arguments.length) {
+			for (let position = 0; position < arguments.length; ++position) {
+				content = content.replace(new RegExp('\\{' + position + '\\}', 'gi'), arguments[position + 1]);
+			}
+		}
+
+		return content;
 	}
 
 	onCopy(event) {
@@ -245,7 +261,7 @@ class Main {
 
 		/* Explicitly change to Original File for Community Knuddels.de */
 		if(new RegExp('([a-zA-Z\\d.-]+\\.knuddels\\.[A-Za-z]{2,4})').test(url)) {
-			url = url.replace(/pro0(s|m|l|vl)0p/gm, 'pro0vl0p');
+			url = url.replace(/pro0(sq|msq|lsq|s|m|l|vl)0p/gm, 'pro0vl0p');
 		}
 
 		this.setPermalink(url);
@@ -317,11 +333,33 @@ class Main {
 		let element = document.querySelector('input#permalink');
 
 		if(image === null) {
+			document.querySelector('.modal-footer .input-group').classList.add('hide');
+			document.querySelector('.modal-footer .dropup').classList.add('hide');
 			element.value = '';
 			return;
 		}
 
-		element.value = 'https://bizarrus.github.io/Hive/\\' + this.Magic + image;
+		document.querySelector('.modal-footer .input-group').classList.remove('hide');
+		document.querySelector('.modal-footer .dropup').classList.remove('hide');
+
+		Object.keys(this.Engines).forEach((name) => {
+			console.log(name, document.querySelector('[data-icon="' + name + '"]'));
+			document.querySelector('[data-icon="' + name + '"]').setAttribute('href', this.format(this.Engines[name], encodeURIComponent(image)));
+		});
+
+		document.querySelector('[data-icon="all"]').dataset.source = image;
+
+		element.value = window.location.protocol + '//' + window.location.href.replace(/(http|https):\/\//, '').replace(window.location.hash, '').replaceAll('//', '/') + '\\' + this.Magic + image;
+	}
+
+	onAllSearchEngines(event) {
+		let image = event.target.dataset.source;
+
+		Object.keys(this.Engines).forEach((name, index) => {
+			setTimeout(() => {
+				window.open(this.format(this.Engines[name], encodeURIComponent(image)));
+			}, index * 10);
+		});
 	}
 
 	convertClass(name) {

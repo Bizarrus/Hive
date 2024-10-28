@@ -206,7 +206,7 @@ hr {
 ui-preview {
 	display: block;
 	position: relative;
-	background: url('../images/logo.svg');
+	background: url('../images/loading.svg');
 	background-repeat: no-repeat;
 	background-size: cover;
 	width: 100%;
@@ -365,4 +365,41 @@ table thead tr th {
 	position: sticky;
 	top: 0;
 	box-shadow: inset 0 -1px 0 var(--bs-primary) !important;
+}
+
+/* Icons */
+[data-icon]::before {
+	content: "";
+	display: inline-block;
+	width: 20px;
+	height: 18px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	margin: 1px 5px -4px 0;
+	background-position: center;
+}
+
+[data-icon="googleimages"]::before {
+	background-image: url('../images/searchengines/googleimages.svg');
+}
+
+[data-icon="googlelens"]::before {
+	background-image: url('../images/searchengines/googlelens.svg');
+}
+
+[data-icon="yandex"]::before {
+	background-image: url('../images/searchengines/yandex.svg');
+}
+
+[data-icon="tineye"]::before {
+	background-image: url('../images/searchengines/tineye.svg');
+}
+
+[data-icon="all"]::before {
+	background-image: url('../images/searchengines/all.svg');
+}
+
+/* Moodal */
+.modal-footer .hide {
+	display: none;
 }

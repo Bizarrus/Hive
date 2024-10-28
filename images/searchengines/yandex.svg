@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="44" viewBox="0 0 100 88">
+    <defs>
+        <style>
+            .background {
+                fill: #fc0;
+                stroke: #000;
+                stroke-width: 1px;
+            }
+
+            .background, .mountain {
+                fill-rule: evenodd;
+            }
+
+            .sun {
+                fill: #e00;
+            }
+        </style>
+    </defs>
+    <path id="background" class="background" d="M-46-30H152V110H-46V-30Z"/>
+    <path id="right" class="mountain" d="M62.5,37L130,109H-5Z"/>
+    <path id="left" class="mountain" d="M24.5,52L92,124H-43Z"/>
+    <circle id="sun" class="sun" cx="25.5" cy="25.5" r="10.5"/>
+</svg>
