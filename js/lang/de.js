@@ -11,6 +11,7 @@ window.strings_de = {
     /* Footer */
     'View on Web Store':        'Im Web Store ansehen',
     'Search for Image':         'Suche nach Bild',
+    'Report Bugs':              'Fehler melden',
 
     /* Other */
     'Copied successfully to the clipboard.':    'Erfolgreich in die Zwischenablage kopiert.',

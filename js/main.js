@@ -343,7 +343,6 @@ class Main {
 		document.querySelector('.modal-footer .dropup').classList.remove('hide');
 
 		Object.keys(this.Engines).forEach((name) => {
-			console.log(name, document.querySelector('[data-icon="' + name + '"]'));
 			document.querySelector('[data-icon="' + name + '"]').setAttribute('href', this.format(this.Engines[name], encodeURIComponent(image)));
 		});
 
