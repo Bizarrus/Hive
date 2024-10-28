@@ -399,7 +399,17 @@ table thead tr th {
 	background-image: url('../images/searchengines/all.svg');
 }
 
+[data-bs-theme="dark"] [data-icon="all"]::before {
+	background-image: url('../images/searchengines/all_light.svg');
+}
+
 /* Moodal */
 .modal-footer .hide {
 	display: none;
+}
+
+.modal-footer .btn {
+	color: var(--bs-btn-hover-color);
+	background-color: var(--bs-btn-hover-bg);
+	border-color: var(--bs-btn-hover-border-color);
 }
