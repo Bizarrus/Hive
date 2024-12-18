@@ -155,7 +155,8 @@ class Main {
 	Data = null;
 	Upload = null;
 	Proxies = [
-		'https://proxy.fruithost.de/?'
+		'https://proxy.hovida.de/?',
+		'https://proxy.mein-chatserver.de/?'
 	];
 
 	constructor() {
