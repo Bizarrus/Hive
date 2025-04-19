@@ -308,7 +308,7 @@ class Main {
 			let hash 	= window.location.hash;
 
 			if(hash.substring(0, this.Magic.length) === this.Magic) {
-				let url 		= hash.replace(this.Magic, '').replace('\_', '_');
+				let url 		= hash.replace(this.Magic, '').replace('\\_', '_');
 				let input		= document.querySelector('ui-input input[type="text"]');
 				input.value		= url;
 				this.searchByURL(input);
@@ -461,7 +461,7 @@ class Main {
 
 		document.querySelector('[data-icon="all"]').dataset.source = image;
 
-		element.value = window.location.protocol + '//' + window.location.href.replace(/(http|https):\/\//, '').replace(window.location.hash, '').replaceAll('//', '/') + '\\' + this.Magic + image.replace('_', '\_');
+		element.value = window.location.protocol + '//' + window.location.href.replace(/(http|https):\/\//, '').replace(window.location.hash, '').replaceAll('//', '/') + '\\' + this.Magic + image.replace('_', '\\_');
 	}
 
 	onAllSearchEngines(event) {
@@ -525,11 +525,11 @@ class Main {
 							let row	= document.createElement('tr');
 
 							row.dataset.bsToggle	= 'tooltip';
-							row.dataset.bsTitle		= '<strong data-i18n="Type">' + window.Language.getI18N('Type') + '</strong>: ' + entry.class + '<br /><strong data-i18n="Score">' + window.Language.getI18N('Score') + '</strong>: ' + entry.score;
+							row.dataset.bsTitle	= '<strong data-i18n="Type">' + window.Language.getI18N('Type') + '</strong>: ' + entry.class + '<br /><strong data-i18n="Score">' + window.Language.getI18N('Score') + '</strong>: ' + entry.score;
 
-							const score 	= Math.max(0, Math.min(100, entry.score * 100));
+							const score 		= Math.max(0, Math.min(100, entry.score * 100));
 
-							row.innerHTML = '<td><span class="state badge" style="background: rgb(' + Math.round(255 * (score / 100)) + ', ' + Math.round(255 * (1 - score / 100)) + ', 0);"></span></td><td>' + this.convertClass(entry.class) + '</td><td><span class="badge text-bg-light">' + score.toFixed(2) + ' %</span></td>';
+							row.innerHTML 		= '<td><span class="state badge" style="background: rgb(' + Math.round(255 * (score / 100)) + ', ' + Math.round(255 * (1 - score / 100)) + ', 0);"></span></td><td>' + this.convertClass(entry.class) + '</td><td><span class="badge text-bg-light">' + score.toFixed(2) + ' %</span></td>';
 							container.append(row);
 
 							new bootstrap.Tooltip(row, {
@@ -538,9 +538,9 @@ class Main {
 							});
 						});
 
-						let label 		= '';
+						let label 	= '';
 						const score 	= Math.max(0, Math.min(100, highest.score * 100));
-						const color 		= 'rgb(' + Math.round(255 * (score / 100)) + ', ' + Math.round(255 * (1 - score / 100)) + ', 0)';
+						const color 	= 'rgb(' + Math.round(255 * (score / 100)) + ', ' + Math.round(255 * (1 - score / 100)) + ', 0)';
 
 						if(highest.score * 100 < 1.5) {
 							label = window.Language.getI18N('Not AI Generated');
