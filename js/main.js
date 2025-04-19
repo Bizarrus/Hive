@@ -461,7 +461,7 @@ class Main {
 
 		document.querySelector('[data-icon="all"]').dataset.source = image;
 
-		element.value = window.location.protocol + '//' + window.location.href.replace(/(http|https):\/\//, '').replace(window.location.hash, '').replaceAll('//', '/') + '\\' + this.Magic + image.replace('_', '\\_');
+		element.value = window.location.protocol + '//' + window.location.href.replace(/(http|https):\/\//, '').replace('#' + window.location.hash, '').replaceAll('//', '/') + '\\' + this.Magic + image.replace('_', '\\_');
 	}
 
 	onAllSearchEngines(event) {
