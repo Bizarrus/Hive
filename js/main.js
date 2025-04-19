@@ -308,9 +308,9 @@ class Main {
 			let hash 	= window.location.hash;
 
 			if(hash.substring(0, this.Magic.length) === this.Magic) {
-				let url 		= hash.replace(this.Magic, '');
-				let input	= document.querySelector('ui-input input[type="text"]');
-				input.value			= url;
+				let url 		= hash.replace(this.Magic, '').replace('\_', '_');
+				let input		= document.querySelector('ui-input input[type="text"]');
+				input.value		= url;
 				this.searchByURL(input);
 				window.location.hash = '';
 			}
