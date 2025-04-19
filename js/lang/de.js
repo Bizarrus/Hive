@@ -30,6 +30,7 @@ window.strings_de = {
     'AI Generated':                 'KI Generiert',
     'Edited':                       'Bearbeitet',
     'Other Image Generators':       'Andere Bild-Generatoren',
+    'Text-to-Image':                'Text-zu-Bild',
     'None':                         'Nichts',
     'Inconclusive':                 'Nicht schlüssig',
     'Inconclusive Video':           'Nicht schlüssiges Video',
