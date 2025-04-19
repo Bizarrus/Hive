@@ -476,6 +476,7 @@ class Main {
 
 	convertClass(name) {
 		if(typeof(this.Classes[name]) === 'undefined') {
+			console.warn('[Warn] Class not found:', name);
 			return name;
 		}
 
@@ -483,6 +484,8 @@ class Main {
 
 		if(typeof(data.url) !== 'undefined') {
 			return '<a class="ai-class icon-link link-underline-opacity-25 text-truncate" href="' + data.url + '" target="_blank" data-i18n="' + data.name + '"><span data-i18n="' + data.name + '">' + window.Language.getI18N(data.name) + '</span><i class="bi bi-box-arrow-up-right"></i></a>';
+		} else {
+			console.warn('[Warn] Class-URL not found:', name);
 		}
 
 		return '<span class="ai-class" data-i18n="' + data.name + '">' + window.Language.getI18N(data.name) + '</span>';
