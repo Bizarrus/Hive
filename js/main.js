@@ -274,7 +274,7 @@ class Main {
 	constructor() {
 		this.Data		= document.querySelector('div#results');
 		this.Toast		= new bootstrap.Toast(document.querySelector('div.toast'));
-		this.Results	= new bootstrap.Modal(this.Data);
+		this.Results		= new bootstrap.Modal(this.Data);
 		this.Upload		= new Dropzone(document.querySelector('ui-drag'), {
 			url:		this.getRandomProxy(this.HiveServer),
 			paramName:	'media',
@@ -285,12 +285,12 @@ class Main {
 			defaultHeaders:		false
 		});
 
-		this.Upload.on("processing", () => {
+		this.Upload.on('processing', () => {
 			this.setPermalink(null);
 			document.body.dataset.loading = 'true';
 		});
 
-		this.Upload.on("success", (file, response, e) => {
+		this.Upload.on('success', (file, response, e) => {
 			this.setPermalink(null);
 			let image = new Image();
 			image.src = file.dataURL;
@@ -461,7 +461,7 @@ class Main {
 
 		document.querySelector('[data-icon="all"]').dataset.source = image;
 
-		element.value = window.location.protocol + '//' + window.location.href.replace(/(http|https):\/\//, '').replace(window.location.hash, '').replaceAll('//', '/') + '\\' + this.Magic + image;
+		element.value = window.location.protocol + '//' + window.location.href.replace(/(http|https):\/\//, '').replace(window.location.hash, '').replaceAll('//', '/') + '\\' + this.Magic + image.replace('_', '\_');
 	}
 
 	onAllSearchEngines(event) {
