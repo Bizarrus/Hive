@@ -148,6 +148,118 @@ class Main {
 		},
 		deepfake: {
 			name: 'deepfake'
+		},
+		liveportrait: {
+			name: 'liveportrait',
+			url: 'https://liveportrait.org/de'
+		},
+		'4o': {
+			name: '4o (Chat-GPT)',
+			url: 'https://openai.com/index/hello-gpt-4o/'
+		},
+		recraft: {
+			name: 'recraft',
+			url: 'https://www.recraft.ai'
+		},
+		grok: {
+			name: 'Grok',
+			url: 'https://x.ai'
+		},
+		wan: {
+			name: 'Wan',
+			url: 'https://www.wan-ai.org/de'
+		},
+		leonardo: {
+			name: 'Leonardo.Ai',
+			url: 'https://leonardo.ai'
+		},
+		hailuo: {
+			name: 'Hailuo AI',
+			url: 'https://hailuoai.video/'
+		},
+		infinity: {
+			name: 'Lemon Slice (Infinity AI)',
+			url: 'https://lemonslice.com'
+		},
+		mcnet: {
+			name: 'McNet',
+			url: 'https://github.com/Audio-WestlakeU/McNet'
+		},
+		cosmos: {
+			name: 'CosmOS (AI Operating System)',
+			url: 'https://humane.com/cosmos'
+		},
+		var: {
+			name: 'VAR',
+			url: 'https://www.newcivilengineer.com/opinion/ai-on-the-ball-using-artificial-intelligence-in-var-and-engineering-decision-making-28-06-2024/'
+		},
+		transpixar: {
+			name: 'TransPixar AI',
+			url: 'https://transpixarai.org'
+		},
+		luminagpt: {
+			name: 'Lumina',
+			url: 'https://www.lumina.sh'
+		},
+		mochi: {
+			name: 'Mochi 1',
+			url: 'https://mochi1ai.com'
+		},
+		sana: {
+			name: 'Sana Agents',
+			url: 'https://sana.ai'
+		},
+		hunyuan: {
+			name: 'Hunyuan Video',
+			url: 'https://hunyuanvideoai.com'
+		},
+		aniportrait: {
+			name: 'AniPortrait',
+			url: 'https://github.com/Zejun-Yang/AniPortrait'
+		},
+		pyramidflows: {
+			name: 'Pyramid Flow AI',
+			url: 'https://pyramid-flow-ai.com'
+		},
+		dmd2: {
+			name: 'DMD2',
+			url: 'https://github.com/tianweiy/DMD2'
+		},
+		omnigen: {
+			name: 'OmniGen AI',
+			url: 'https://omnigenai.org'
+		},
+		flashvideo: {
+			name: 'FlashVideo',
+			url: 'https://github.com/FoundationVision/FlashVideo'
+		},
+		emu3: {
+			name: 'Emu3',
+			url: 'https://emu.baai.ac.cn/about'
+		},
+		switti: {
+			name: 'Switti 1024',
+			url: 'https://fal.ai/models/switti'
+		},
+		hallo: {
+			name: 'HalloAI',
+			url: 'https://www.hallo.ai'
+		},
+		cogvideos: {
+			name: 'CogVideoX AI',
+			url: 'https://cogvideox.org'
+		},
+		makeittalk: {
+			name: 'MakeItTalk',
+			url: 'https://github.com/yzhou359/MakeItTalk'
+		},
+		janus: {
+			name: 'JanusAI',
+			url: 'https://janusai.pro'
+		},
+		sadtalker: {
+			name: 'SadTalker',
+			url: 'https://sadtalker.github.io'
 		}
 	};
 	Results = null;
