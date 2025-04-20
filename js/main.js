@@ -308,7 +308,7 @@ class Main {
 			let hash 	= window.location.hash;
 
 			if(hash.substring(0, this.Magic.length) === this.Magic) {
-				let url 		= hash.replace(this.Magic, '').replace('\\_', '_');
+				let url 		= hash.replace(this.Magic, '').replaceAll('\\_', '_');
 				let input		= document.querySelector('ui-input input[type="text"]');
 				input.value		= url;
 				this.searchByURL(input);
@@ -394,7 +394,7 @@ class Main {
 			new Ajax(this.getRandomProxy(this.HiveServer)).post(data).then((response) => {
 				try {
 					let image	= new Image();
-					image.src					= this.getRandomProxy(url);
+					image.src	= this.getRandomProxy(url);
 					this.fillResults(image, JSON.parse(response.response));
 				} catch (e) {
 					this.pushInfo('danger', 'Malformed Output.', e.message);
@@ -461,7 +461,7 @@ class Main {
 
 		document.querySelector('[data-icon="all"]').dataset.source = image;
 
-		element.value = window.location.protocol + '//' + window.location.href.replace(/(http|https):\/\//, '').replace('#' + window.location.hash, '').replaceAll('//', '/') + '\\' + this.Magic + image.replace('_', '\\_');
+		element.value = window.location.protocol + '//' + window.location.href.replace(/(http|https):\/\//, '').replace('#' + window.location.hash, '').replaceAll('//', '/') + '\\' + this.Magic + image.replaceAll('_', '\\_');
 	}
 
 	onAllSearchEngines(event) {
