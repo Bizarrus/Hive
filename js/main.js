@@ -598,3 +598,4 @@ class Main {
 document.addEventListener('DOMContentLoaded', () => {
 	new Main();
 });
+ 
