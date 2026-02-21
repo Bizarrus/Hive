@@ -382,7 +382,7 @@ class Main {
 		/* Get the Image */
 		new Ajax(this.getRandomProxy(url)).additional(function () {
 			this.responseType = 'arraybuffer';
-		}).get().then((response) => {
+		}).get().then(async (response) => {
 			const data	= new FormData();
 			const file 		= new File([response.response], 'temp_' + Date.now() + '.jpg', {
 				type: 'image/jpeg'
@@ -391,6 +391,30 @@ class Main {
 			data.append('media',		file);
 			data.append('request_id',	this.generateUniqSerial());
 
+			try {
+			    const response = await fetch(this.getRandomProxy(this.HiveServer), {
+			      method: "POST",
+			      mode: "cors",
+			      cache: "no-cache",
+			      credentials: "same-origin",
+			      redirect: "follow", 
+			      referrerPolicy: "no-referrer",
+			      body: JSON.stringify(data),
+			      ...{ body: formData },
+			    });
+				
+			 	try {
+					let image	= new Image();
+					image.src	= this.getRandomProxy(url);
+					this.fillResults(image, JSON.parse(await response.text()));
+				} catch (e) {
+					this.pushInfo('danger', 'Malformed Output.', e.message);
+				}
+			  } catch (e) {
+			    this.pushInfo('danger', 'Malformed Output.', e.message);
+			  }
+
+			/*
 			new Ajax(this.getRandomProxy(this.HiveServer)).post(data).then((response) => {
 				try {
 					let image	= new Image();
@@ -401,7 +425,7 @@ class Main {
 				}
 			}).catch((error, ref) => {
 				this.pushInfo('danger', 'Request Error.', error.message);
-			});
+			});*/
 		});
 	}
 
