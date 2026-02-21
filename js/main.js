@@ -400,7 +400,7 @@ class Main {
 			      redirect: "follow", 
 			      referrerPolicy: "no-referrer",
 			      body: JSON.stringify(data),
-			      ...{ body: formData },
+			      ...{ body: data },
 			    });
 				
 			 	try {
