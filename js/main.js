@@ -8,7 +8,7 @@ class Main {
 	Magic = '#analyze/';
 	Engines = {
 		googleimages: 'https://www.google.com/searchbyimage?image_url={0}&client=app',
-		googlelens: 'https://lens.google.com/uploadbyurl?url={0}&hl=en&re=df&st=${+ new Date()}&ep=gisbubu',
+		googlelens: 'https://lens.google.com/uploadbyurl?url={0}&hl=en&re=df&st=${+ new Date()}&ep=ccm&s=4',
 		yandex: 'https://yandex.com/images/search?url={0}&rpt=imageview&crop=0;0;1;1',
 		tineye: 'https://www.tineye.com/search/?url={0}'
 	};
